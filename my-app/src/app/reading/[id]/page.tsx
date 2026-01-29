@@ -25,7 +25,7 @@ export default async function ReadingPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* The main reading logic */}
-      <ReadingView passage={passage} questions={questions} />
+      <ReadingView passage={passage} initialQuestions={[]} />
     </main>
   );
 }

@@ -12,7 +12,7 @@ export interface FullPassage extends PassageBase{
 
 export interface Question {
   id: string;
-  type: 'MCQ' | 'TYPING';
+  type: 'MCQ' | 'TYPING' | 'TRUE_FALSE' | 'mcq' | 'typing' | 'true_false' | 'short-answer';
   category: 'literal' | 'abstract';
   question: string;
   options?: string[];
@@ -26,4 +26,11 @@ export interface Question {
 export interface PassageEntry {
   id: string;
   questions: Question[];
+}
+
+
+export interface Chunk {
+  text: string;
+  startIdx: number;
+  endIdx: number;
 }
