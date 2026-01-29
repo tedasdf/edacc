@@ -69,7 +69,7 @@ export function QuestionList({
             currentValue={savedAnswer || ""} 
             // Add a prop to QuestionCard to tell it to show the "Submitted/Correct" state immediately
             isLocked={hasBeenAnswered} 
-            onAnswer={(val: any) => onAnswer(q.id, val)} 
+            onAnswer={(val: any) => onAnswer(Number(q.id), val)}
           />
         );
       })}
