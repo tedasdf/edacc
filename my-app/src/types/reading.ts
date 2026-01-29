@@ -21,6 +21,7 @@ export interface Question {
   source_context: string;
   sentence_index?: number; // The index of the sentence in allSentences
   explanation?: string;
+  difficulty?: 'easy' | 'medium' | 'hard';
 }
 
 export interface PassageEntry {

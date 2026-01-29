@@ -19,7 +19,11 @@ export function QuestionCard({ question, index, currentValue, isLocked, onAnswer
   const [needsJustification, setNeedsJustification] = useState(false);
   const [justification, setJustification] = useState("");
   const [showFeedback, setShowFeedback] = useState(isLocked);
-
+  const difficultyStyles = {
+    easy: "bg-emerald-50 text-emerald-600 border-emerald-100",
+    medium: "bg-amber-50 text-amber-600 border-amber-100",
+    hard: "bg-rose-50 text-rose-600 border-rose-100",
+  };
   // Sync internal state if parent pushes a value (e.g., page refresh or Reset)
   useEffect(() => {
     setDraftValue(currentValue);
@@ -56,6 +60,12 @@ export function QuestionCard({ question, index, currentValue, isLocked, onAnswer
         <span className="text-emerald-500 font-bold text-[10px] md:text-xs uppercase tracking-widest">
           Question {index + 1} • {question.category}
         </span>
+        {/* New Difficulty Badge */}
+          <span className={`px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-tighter border ${
+            difficultyStyles[question.difficulty as keyof typeof difficultyStyles] || difficultyStyles.medium
+          }`}>
+            {question.difficulty}
+          </span>
       </div>
       
       <h3 className="text-base md:text-xl font-serif text-slate-800 mt-2 mb-6 md:mb-8 leading-relaxed">

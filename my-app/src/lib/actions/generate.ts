@@ -50,6 +50,7 @@ function normalizeQuestions(questions: any[], sentenceCount: number): Question[]
       sentence_index: index,
       options: normalizedOptions.length > 0 ? normalizedOptions : undefined,
       answer: finalAnswer.trim(),
+      difficulty: (q.difficulty || 'medium').toLowerCase()
     };
   });
 }
@@ -75,6 +76,8 @@ export async function generateQuestions(passageText: string): Promise<Question[]
   const sentences = splitIntoSentences(passageText);
   const sentenceCount = sentences.length;
   
+  const randomSeed = Math.floor(Math.random() * 10000);
+
   const systemPrompt = `
     You are an expert educational assessment designer.
 
@@ -85,6 +88,14 @@ export async function generateQuestions(passageText: string): Promise<Question[]
     Do NOT add extra fields.
     Do NOT omit required fields.
     Return ONLY valid JSON.
+
+    VARIETY CONSTRAINT (Seed: ${randomSeed}):
+    Focus on unique angles. If multiple questions target the same segment, 
+    ensure one targets vocabulary in context, another targets logic, 
+    and another targets evidence.
+
+    DIFFICULTY ASSIGNMENT:
+    Include exactly 3 'easy', 4 'medium', and 3 'hard' questions.
   `;
 
 
@@ -125,6 +136,7 @@ export async function generateQuestions(passageText: string): Promise<Question[]
     2. Each question MUST include ALL fields below:
     - id (number starting from 1)
     - sentence_index (number OR "global")
+    - difficulty ("easy", "medium", or "hard")
     - type ("mcq" or "short-answer")
     - category ("detail", "inference", "abstract", "cause-effect", "main-idea")
     - question (string)

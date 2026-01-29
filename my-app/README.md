@@ -1,73 +1,144 @@
-📚 AI-Powered Adaptive Reader
-A modern, gesture-based reading application designed to improve comprehension through active engagement. This project features a unique "Swipe-to-Read" interface combined with real-time AI question generation and mobile-optimized text highlighting.
 
-🚀 Key Features
-1. Adaptive Card Stack
-Segmented Reading: Large passages are automatically broken down into digestible "chunks" based on your preference.
+Even slow readers never feel buried by a wall of text.
 
-Gesture Control: Smooth, Framer Motion-powered swiping logic.
+---
 
-Active Recall: The stack "locks" until you answer the AI-generated questions for the current section, ensuring you don't just skim through.
+### 🔹 Short Answer + Explanation System
 
-2. Intelligent Highlighting (Notebook)
-Dual-Mode Interface: Toggle between Swipe Mode (for navigation) and Highlight Mode (for study).
+Multiple choice alone encourages guessing.
 
-Mobile Optimized: Specifically engineered to handle native mobile touch events, preventing crashes during long-press selection.
+To prevent shallow engagement:
 
-Persistent Notebook: Highlights are saved to localStorage, allowing you to build a personal study guide that survives page refreshes.
+- Users must write short answers
+- If they get an MCQ wrong, they must explain their reasoning
+- Progress is locked until reflection is completed
 
-3. Dynamic AI Generation
-Contextual Questions: Uses LLMs (via Next.js Server Actions) to analyze the specific text on your screen and generate relevant multiple-choice questions.
+This forces learners to:
 
-Regeneration: The "Retry" feature allows you to wipe progress and generate a completely fresh set of questions for a new study session.
+- reword concepts
+- organize thoughts
+- revisit the passage
+- confront misunderstanding
 
-4. Progress Tracking
-Visual Feedback: A global progress bar tracks both your card position and question completion rate.
+Mistakes become learning moments instead of skipped screens.
 
-Session Persistence: Automatically saves your state (current card, answers, and progress) so you can pick up exactly where you left off.
+---
 
-🛠️ Tech Stack
-Framework: Next.js 14+ (App Router)
+### 🔹 Memory Reinforcement Questions
 
-Animation: Framer Motion
+After finishing all chunks, users face global questions about the entire passage.
 
-Styling: Tailwind CSS
+They cannot access the text.
 
-Icons: Lucide React
+This encourages:
 
-Deployment: Vercel
+- conceptual recall
+- idea synthesis
+- long-term retention
 
-📱 Mobile-First Engineering
-One of the core challenges addressed in this project was the conflict between JS-driven drag gestures and Native browser text selection.
+Instead of remembering sentences, they remember meaning.
 
-The Problem: releasePointerCapture errors often occur when a drag library and the browser's text magnifier fight for the same pointer ID.
+---
 
-The Solution: We implemented a dragListener toggle and event propagation blocking. In "Highlight Mode," the card becomes "motion-silent," allowing the mobile OS to take full control of the text selection handles.
+### 🔹 Flashcard-Style Interaction
 
-⚙️ Installation & Setup
-Clone the repo:
+The UI is inspired by flashcards:
 
-Bash
-git clone https://github.com/your-username/your-repo-name.git
-Install dependencies:
+- swipe progression
+- focused single-screen tasks
+- visible progress bar
+- intuitive navigation
 
-Bash
-npm install
-Set up Environment Variables: Create a .env.local file and add your AI API keys:
+The experience feels like guided study — not an exam interface.
 
-Code snippet
-OPENAI_API_KEY=your_key_here
-Run locally:
+---
 
-Bash
-npm run dev
-🌐 Deployment on Vercel
-This project is optimized for Vercel.
+### 🔹 Highlight Mode + Notebook
 
-Push your code to GitHub.
+Readers can highlight text and store notes in a persistent notebook.
 
-Import the project into the Vercel Dashboard.
+The notebook is accessible from:
 
-Crucial: Add your OPENAI_API_KEY to the Environment Variables in the Vercel project settings.
+- the reading page
+- the homepage
 
-If you encounter 404 errors on refreshes, ensure your vercel.json is configured for client-side routing.
+This supports:
+
+- rereading key sections
+- personal annotations
+- spaced review
+
+Users who want deeper study tools have them available without cluttering the core interface.
+
+---
+
+### 🔹 Dual-Mode Interface
+
+Users can toggle between:
+
+- **Swipe Mode** → fast navigation
+- **Highlight Mode** → study and annotation
+
+This keeps reading fluid while still supporting active learning.
+
+---
+
+### 🔹 Dynamic AI Question Generation
+
+Questions are generated contextually from each chunk.
+
+This ensures:
+
+- relevance
+- variety
+- scalable content creation
+- adaptive difficulty potential
+
+The system is built to evolve with AI-driven personalization.
+
+---
+
+### 🔹 Progress Tracking
+
+A visible progress bar and chunk completion system:
+
+- reduces anxiety
+- creates momentum
+- gives clear milestones
+- encourages completion
+
+Readers always know where they are and what remains.
+
+---
+
+## 🧩 Design Decisions
+
+Each feature directly answers a user pain point:
+
+| User Complaint | Design Response |
+|----------------|----------------|
+| Passage too long | Adjustable chunking |
+| MCQ too easy | Short answer + explanation |
+| Forgetting content | Memory reinforcement questions |
+| Ignoring explanations | Forced reflection gate |
+| Feels like a test | Flashcard UI |
+| Can’t find text | Highlight + notebook |
+| Too overwhelming | Chunk-based question display |
+| Different reading speeds | User-controlled chunk size |
+
+The system isn’t feature-heavy for its own sake.
+
+Every component exists to remove friction and deepen learning.
+
+---
+
+## 🚀 Future Directions
+
+- Adaptive difficulty based on performance
+- Personalized chunk sizing recommendations
+- Long-term spaced repetition
+- Knowledge graph tracking
+- AI study summaries from highlights
+
+---
+
