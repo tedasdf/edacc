@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📚 AI-Powered Adaptive Reader
+A modern, gesture-based reading application designed to improve comprehension through active engagement. This project features a unique "Swipe-to-Read" interface combined with real-time AI question generation and mobile-optimized text highlighting.
 
-## Getting Started
+🚀 Key Features
+1. Adaptive Card Stack
+Segmented Reading: Large passages are automatically broken down into digestible "chunks" based on your preference.
 
-First, run the development server:
+Gesture Control: Smooth, Framer Motion-powered swiping logic.
 
-```bash
+Active Recall: The stack "locks" until you answer the AI-generated questions for the current section, ensuring you don't just skim through.
+
+2. Intelligent Highlighting (Notebook)
+Dual-Mode Interface: Toggle between Swipe Mode (for navigation) and Highlight Mode (for study).
+
+Mobile Optimized: Specifically engineered to handle native mobile touch events, preventing crashes during long-press selection.
+
+Persistent Notebook: Highlights are saved to localStorage, allowing you to build a personal study guide that survives page refreshes.
+
+3. Dynamic AI Generation
+Contextual Questions: Uses LLMs (via Next.js Server Actions) to analyze the specific text on your screen and generate relevant multiple-choice questions.
+
+Regeneration: The "Retry" feature allows you to wipe progress and generate a completely fresh set of questions for a new study session.
+
+4. Progress Tracking
+Visual Feedback: A global progress bar tracks both your card position and question completion rate.
+
+Session Persistence: Automatically saves your state (current card, answers, and progress) so you can pick up exactly where you left off.
+
+🛠️ Tech Stack
+Framework: Next.js 14+ (App Router)
+
+Animation: Framer Motion
+
+Styling: Tailwind CSS
+
+Icons: Lucide React
+
+Deployment: Vercel
+
+📱 Mobile-First Engineering
+One of the core challenges addressed in this project was the conflict between JS-driven drag gestures and Native browser text selection.
+
+The Problem: releasePointerCapture errors often occur when a drag library and the browser's text magnifier fight for the same pointer ID.
+
+The Solution: We implemented a dragListener toggle and event propagation blocking. In "Highlight Mode," the card becomes "motion-silent," allowing the mobile OS to take full control of the text selection handles.
+
+⚙️ Installation & Setup
+Clone the repo:
+
+Bash
+git clone https://github.com/your-username/your-repo-name.git
+Install dependencies:
+
+Bash
+npm install
+Set up Environment Variables: Create a .env.local file and add your AI API keys:
+
+Code snippet
+OPENAI_API_KEY=your_key_here
+Run locally:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🌐 Deployment on Vercel
+This project is optimized for Vercel.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Push your code to GitHub.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Import the project into the Vercel Dashboard.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Crucial: Add your OPENAI_API_KEY to the Environment Variables in the Vercel project settings.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you encounter 404 errors on refreshes, ensure your vercel.json is configured for client-side routing.

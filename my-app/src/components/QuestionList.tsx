@@ -9,7 +9,7 @@ interface QuestionListProps {
   allSentencesCount: number;
   isSummaryState: boolean;
   answers: Record<string, string>;
-  onAnswer: (questionId: number, value: any) => void;
+  onAnswer: (id: string | number, val: string) => void; // Make sure 'id' allows both or matches q.id
   isGenerating: boolean;
 }
 

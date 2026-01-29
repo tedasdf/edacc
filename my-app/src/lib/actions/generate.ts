@@ -185,7 +185,7 @@ export async function generateQuestions(passageText: string): Promise<Question[]
     parsed.questions,
     sentenceCount
   );
-  console.log("GENERAE");
+
   // Validate indices (0 → sentenceCount)
   validateSentenceIndices(normalizedQuestions, sentenceCount);
 
