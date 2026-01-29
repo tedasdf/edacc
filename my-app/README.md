@@ -1,34 +1,107 @@
+# 📘 AI Reading Comprehension Interface
 
-Even slow readers never feel buried by a wall of text.
+A next-generation reading experience designed to turn passive comprehension exercises into active learning.
 
----
-
-### 🔹 Short Answer + Explanation System
-
-Multiple choice alone encourages guessing.
-
-To prevent shallow engagement:
-
-- Users must write short answers
-- If they get an MCQ wrong, they must explain their reasoning
-- Progress is locked until reflection is completed
-
-This forces learners to:
-
-- reword concepts
-- organize thoughts
-- revisit the passage
-- confront misunderstanding
-
-Mistakes become learning moments instead of skipped screens.
+This project was built as part of the EdAccelerator technical assessment. The goal was to redesign the reading interface using AI and product thinking to improve engagement, retention, and learning outcomes.
 
 ---
 
-### 🔹 Memory Reinforcement Questions
+## 🎯 Problem Interpretation
 
-After finishing all chunks, users face global questions about the entire passage.
+The current system is functional but encourages shallow interaction:
 
-They cannot access the text.
+- Students guess multiple-choice answers
+- They forget the passage immediately
+- They skip explanations
+- Reading feels like a test, not learning
+- Long passages feel overwhelming
+- Slower readers struggle with the interface
+
+The challenge is not just to display a passage — it is to design a system that forces meaningful engagement.
+
+My guiding design principle:
+
+> Reading should require thinking, not guessing.
+
+---
+
+## 🧠 Learning Design Philosophy
+
+The interface is built around three learning principles:
+
+### Active Recall
+Typing and explaining answers strengthens memory more than selecting options.
+
+### Reflection Before Progress
+Users must confront mistakes before continuing.
+
+### Adjustable Cognitive Load
+Readers can control chunk size to match their pace.
+
+The experience adapts to different reading speeds without changing passage difficulty.
+
+---
+
+## ✨ Core Features
+
+### 1. Segmented Reading (Adjustable Chunking)
+
+Large passages are broken into digestible chunks.
+
+Users preview the passage and choose chunk size with a slider:
+
+- Smaller chunks → easier focus
+- Larger chunks → higher difficulty
+- Same passage, different learning experience
+
+Questions are tied directly to each chunk to reduce overload.
+
+This solves:
+
+> “It’s annoying seeing the entire passage all at once.”
+
+---
+
+### 2. Adaptive Question Display
+
+Only questions relevant to the current chunk are shown.
+
+This creates a tight loop:
+
+```
+read -> answer -> reflect -> continue
+```
+
+
+Even slower readers never feel overwhelmed.
+
+---
+
+### 3. Short Answer + Forced Explanation
+
+Multiple choice alone is too easy to game.
+
+Enhancements:
+
+- Short answer questions require rewording
+- If MCQ is wrong → user must explain reasoning
+- Progress is locked until explanation is written
+
+This forces deeper cognitive effort.
+
+It solves:
+
+> “I don’t really learn why I’m wrong.”
+
+Mistakes become learning events.
+
+---
+
+### 4. Memory Reinforcement Phase
+
+After finishing all chunks, users answer global questions about the entire passage.
+
+The text is hidden.
 
 This encourages:
 
@@ -36,109 +109,185 @@ This encourages:
 - idea synthesis
 - long-term retention
 
-Instead of remembering sentences, they remember meaning.
+It addresses:
+
+> “I immediately forget what I read.”
 
 ---
 
-### 🔹 Flashcard-Style Interaction
+### 5. Flashcard-Style Interaction
 
-The UI is inspired by flashcards:
+The UI behaves like interactive flashcards:
 
-- swipe progression
-- focused single-screen tasks
-- visible progress bar
-- intuitive navigation
+- single focus per screen
+- swipe-style progression
+- progress bar
+- clear milestones
 
-The experience feels like guided study — not an exam interface.
-
----
-
-### 🔹 Highlight Mode + Notebook
-
-Readers can highlight text and store notes in a persistent notebook.
-
-The notebook is accessible from:
-
-- the reading page
-- the homepage
-
-This supports:
-
-- rereading key sections
-- personal annotations
-- spaced review
-
-Users who want deeper study tools have them available without cluttering the core interface.
+The interface feels like guided study, not an exam.
 
 ---
 
-### 🔹 Dual-Mode Interface
+### 6. Highlight Mode + Notebook
 
-Users can toggle between:
+Users can highlight text and store notes.
 
-- **Swipe Mode** → fast navigation
-- **Highlight Mode** → study and annotation
+Notebook is accessible from:
 
-This keeps reading fluid while still supporting active learning.
+- reading page
+- homepage
 
----
+This supports rereading and personal study strategies.
 
-### 🔹 Dynamic AI Question Generation
+Solves:
 
-Questions are generated contextually from each chunk.
-
-This ensures:
-
-- relevance
-- variety
-- scalable content creation
-- adaptive difficulty potential
-
-The system is built to evolve with AI-driven personalization.
+> “I want to re-read a specific part but can’t find it.”
 
 ---
 
-### 🔹 Progress Tracking
+### 7. Dual Mode Interface
 
-A visible progress bar and chunk completion system:
+Users toggle between:
+
+- Swipe Mode → navigation
+- Highlight Mode → study
+
+Fast readers stay fluid. Deep learners can annotate.
+
+---
+
+### 8. Progress Tracking
+
+Visible progress:
 
 - reduces anxiety
 - creates momentum
-- gives clear milestones
 - encourages completion
 
-Readers always know where they are and what remains.
+Users always know where they are.
 
 ---
 
-## 🧩 Design Decisions
+## 🤖 AI Question Generation Approach
 
-Each feature directly answers a user pain point:
+Questions are generated dynamically using AI.
 
-| User Complaint | Design Response |
-|----------------|----------------|
-| Passage too long | Adjustable chunking |
-| MCQ too easy | Short answer + explanation |
-| Forgetting content | Memory reinforcement questions |
-| Ignoring explanations | Forced reflection gate |
-| Feels like a test | Flashcard UI |
-| Can’t find text | Highlight + notebook |
-| Too overwhelming | Chunk-based question display |
-| Different reading speeds | User-controlled chunk size |
+Goals:
 
-The system isn’t feature-heavy for its own sake.
+- test comprehension, not recall
+- vary difficulty
+- mix question types
+- encourage reasoning
 
-Every component exists to remove friction and deepen learning.
+### Question Types
+
+- Multiple choice (conceptual understanding)
+- Short answer (rephrasing ideas)
+- Explanation prompts (metacognition)
+- Global synthesis questions
+
+Each chunk generates contextual questions tied to the text segment.
+
+### Prompt Strategy
+
+The AI is instructed to:
+
+- avoid surface recall
+- ask inference-based questions
+- require explanation when possible
+- vary structure and difficulty
+
+Questions are generated per chunk, not per full passage, to maintain relevance.
+
+This design scales to any passage length.
 
 ---
 
-## 🚀 Future Directions
+## 🧩 Architecture Overview
 
-- Adaptive difficulty based on performance
-- Personalized chunk sizing recommendations
-- Long-term spaced repetition
-- Knowledge graph tracking
-- AI study summaries from highlights
+**Frontend**
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- Responsive mobile + desktop UI
+
+**AI Layer**
+- OpenAI API
+- Chunk-aware prompt pipeline
+- Structured JSON output
+- Validation before rendering
+
+**Flow**
+
+```
+passage -> chunking -> AI generation -> question rendering -> scoring
+```
+
 
 ---
 
+## 📊 Scoring System
+
+- Tracks correct / incorrect answers
+- Final score displayed at completion
+- Reflection required for incorrect responses
+- Encourages learning over speed
+
+---
+
+## 📱 Responsive Design
+
+Fully responsive:
+
+- mobile-first layout
+- swipe-friendly interface
+- keyboard and touch compatible
+
+Works seamlessly on desktop and phone.
+
+---
+
+## 🚀 Future Improvements
+
+- Adaptive difficulty scaling
+- Personalized chunk recommendations
+- Spaced repetition system
+- AI-generated summaries from highlights
+- Learning analytics dashboard
+
+---
+
+## 🏁 Conclusion
+
+This interface transforms reading from:
+
+```
+scroll -> guess -> forget
+```
+
+into
+
+```
+read -> think -> explain -> remember
+```
+
+
+The goal is not to test students — it is to train comprehension.
+
+Every feature exists to increase engagement, retention, and learning depth.
+
+---
+
+## 🔗 Live Demo
+
+Vercel deployment:  
+https://github.com/tedasdf/edacc
+
+---
+
+## 📂 Repository
+
+GitHub:  
+[\[Add your GitHub link here\]](https://github.com/tedasdf/edacc)
+
+---
