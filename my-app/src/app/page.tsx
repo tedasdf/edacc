@@ -1,13 +1,10 @@
 "use client";
-import { useState } from 'react';
 import { PassageCard } from '@/src/components/PassageCard';
 import { usePassages } from '@/src/lib/hooks/usePassages';
-import { generateQuestions } from '@/src/lib/actions/generate';
 
 export default function Home() {
   const { getPassageSummaries } = usePassages();
   const passages = getPassageSummaries();
-  const [isTesting, setIsTesting] = useState(false);
 
   return (
     /* We removed 'p-6' because the layout.tsx now handles the padding (md:p-8) */

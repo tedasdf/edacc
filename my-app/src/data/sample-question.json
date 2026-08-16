@@ -1,115 +1,347 @@
-{
-  "id": "passage-1",
-  "questions": [
-    {
-      "id": 1,
-      "sentence_index": 4,
-      "type": "short-answer",
-      "category": "abstract",
-      "question": "Based on the text, why might the title 'Queen' be considered a bit of a misnomer regarding her power?",
-      "answer": "The queen does not actually make decisions or 'rule' the hive; her role is strictly biological (laying eggs).",
-      "rubric": "Full marks if the student identifies that she lacks decision-making power despite the royal title.",
-      "source_context": "Despite her title, the queen doesn't actually make decisions for the hive. Her main job is simply to lay eggs."
-    },
-    {
-      "id": 2,
-      "sentence_index": 16,
-      "type": "MCQ",
-      "category": "detail",
-      "question": "What determines the direction of the food source in a forager's waggle dance?",
-      "options": [
-        "The speed of the vibrations",
-        "The angle of the dance relative to the sun",
-        "The length of the waggle",
-        "The number of bees watching"
-      ],
-      "answer": "The angle of the dance relative to the sun",
-      "source_context": "The angle of her dance shows the direction relative to the sun."
-    },
-    {
-      "id": 3,
-      "sentence_index": 9,
-      "type": "short-answer",
-      "category": "detail",
-      "question": "Describe the progression of a worker bee's jobs as she ages.",
-      "answer": "They start as cleaners/feeders, move to guarding the entrance, and finally become foragers.",
-      "rubric": "Must mention at least two stages: internal hive work (cleaning/larvae) and external work (guarding/foraging).",
-      "source_context": "Young workers stay inside... cleaning cells... As they get older, they graduate to guarding... The oldest workers become foragers."
-    },
-    {
-      "id": 4,
-      "sentence_index": 19,
-      "type": "MCQ",
-      "category": "detail",
-      "question": "How many bees contribute their life's work to produce a single spoonful of honey?",
-      "options": ["100 bees", "60,000 bees", "12 bees", "2,000 bees"],
-      "answer": "12 bees",
-      "source_context": "Every spoonful of honey represents the life's work of about twelve bees."
-    },
-    {
-      "id": 5,
-      "sentence_index": 13,
-      "type": "short-answer",
-      "category": "abstract",
-      "question": "What does the treatment of drones in autumn reveal about the hive's priorities?",
-      "answer": "It reveals that the survival of the colony as a whole is more important than the individual, especially during resource scarcity.",
-      "rubric": "Looking for themes of 'survival of the colony' or 'efficiency over compassion.'",
-      "source_context": "In autumn, when food becomes scarce, the workers push the drones out of the hive to conserve resources."
-    },
-    {
-      "id": 6,
-      "sentence_index": 11,
-      "type": "MCQ",
-      "category": "detail",
-      "question": "Which of the following is NOT a characteristic of a drone?",
-      "options": [
-        "They have no stingers",
-        "They collect pollen for the larvae",
-        "They are male",
-        "Their purpose is to mate"
-      ],
-      "answer": "They collect pollen for the larvae",
-      "source_context": "Male bees are called drones. They don't collect food, don't guard the hive, and don't have stingers."
-    },
-    {
-      "id": 7,
-      "sentence_index": 9,
-      "type": "short-answer",
-      "category": "detail",
-      "question": "How far can a forager bee fly from the hive to find food?",
-      "answer": "Up to five miles.",
-      "rubric": "Correct numerical value (5) and unit (miles).",
-      "source_context": "The oldest workers become foragers, flying up to five miles from the hive."
-    },
-    {
-      "id": 8,
-      "sentence_index": 7,
-      "type": "MCQ",
-      "category": "detail",
-      "question": "What material do young worker bees use to build the honeycomb?",
-      "options": ["Dried mud", "Pollen paste", "Wax from their own bodies", "Nectar"],
-      "answer": "Wax from their own bodies",
-      "source_context": "...building honeycomb from wax they produce from their own bodies."
-    },
-    {
-      "id": 9,
-      "sentence_index": 0,
-      "type": "short-answer",
-      "category": "abstract",
-      "question": "The author compares the hive to a 'human city.' Based on the text, what is one way they are similar?",
-      "answer": "Both have highly organized structures where every individual has a specific job or role to play.",
-      "rubric": "Reference to organization, division of labor, or large populations living together.",
-      "source_context": "Inside every beehive, there is a world more organized than most human cities... every single one has a job to do."
-    },
-    {
-      "id": 10,
-      "sentence_index": 3,
-      "type": "MCQ",
-      "category": "detail",
-      "question": "During summer, how many eggs can a queen bee lay in a single day?",
-      "options": ["12", "60,000", "500", "2,000"],
-      "answer": "2,000",
-      "source_context": "She is the only bee that lays eggs—up to 2,000 per day during summer."
-    }
-  ]
-}
+[
+  {
+    "id": "passage-1",
+    "questions": [
+      {
+        "id": 1,
+        "sentence_index": 19,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "main-idea",
+        "question": "How does the division of labor among honeybees help the hive function as one system?",
+        "answer": "Each kind of bee performs a specialized role: the queen lays eggs, workers maintain and defend the hive, foragers collect food and communicate its location, and drones reproduce.",
+        "rubric": "A strong response explains that specialized, coordinated roles allow the colony to meet its needs and survive.",
+        "source_context": "The passage describes distinct but connected jobs performed by the queen, workers, foragers, and drones."
+      },
+      {
+        "id": 2,
+        "sentence_index": 16,
+        "difficulty": "medium",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "What determines the direction of the food source in a forager's waggle dance?",
+        "options": ["The speed of the vibrations", "The angle of the dance relative to the sun", "The length of the waggle", "The number of bees watching"],
+        "answer": "The angle of the dance relative to the sun",
+        "source_context": "The angle of her dance shows the direction relative to the sun."
+      },
+      {
+        "id": 3,
+        "sentence_index": 9,
+        "difficulty": "easy",
+        "type": "short-answer",
+        "category": "detail",
+        "question": "Describe how a worker bee's jobs change as she ages.",
+        "answer": "A worker begins with jobs inside the hive, later guards the entrance, and finally becomes a forager.",
+        "rubric": "The response should mention at least two stages, including internal hive work and a later guarding or foraging role.",
+        "source_context": "Young workers maintain the hive, older workers guard it, and the oldest workers forage."
+      },
+      {
+        "id": 4,
+        "sentence_index": 18,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "About how many bees contribute their life's work to one spoonful of honey?",
+        "options": ["100 bees", "60,000 bees", "12 bees", "2,000 bees"],
+        "answer": "12 bees",
+        "source_context": "Every spoonful of honey represents the life's work of about twelve bees."
+      },
+      {
+        "id": 5,
+        "sentence_index": 13,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "abstract",
+        "question": "What does the treatment of drones in autumn reveal about the hive's priorities?",
+        "answer": "It shows that conserving resources and protecting the colony are placed above the needs of individual drones.",
+        "rubric": "The response should connect the drones' removal with resource conservation or colony survival.",
+        "source_context": "Workers push drones out when autumn food becomes scarce."
+      },
+      {
+        "id": 6,
+        "sentence_index": 11,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "Which activity is not performed by a drone?",
+        "options": ["Mating with a queen", "Living in the hive", "Collecting pollen", "Depending on stored food"],
+        "answer": "Collecting pollen",
+        "source_context": "Drones do not collect food or guard the hive."
+      },
+      {
+        "id": 7,
+        "sentence_index": 9,
+        "difficulty": "medium",
+        "type": "short-answer",
+        "category": "detail",
+        "question": "How far can a forager bee fly from the hive to find food?",
+        "answer": "A forager can fly up to five miles from the hive.",
+        "rubric": "The response should give the distance of five miles.",
+        "source_context": "The oldest workers fly up to five miles to collect nectar and pollen."
+      },
+      {
+        "id": 8,
+        "sentence_index": 7,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "What material do young worker bees use to build honeycomb?",
+        "options": ["Dried mud", "Pollen paste", "Wax from their own bodies", "Nectar"],
+        "answer": "Wax from their own bodies",
+        "source_context": "Young workers build honeycomb from wax they produce themselves."
+      },
+      {
+        "id": 9,
+        "sentence_index": 19,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "abstract",
+        "question": "What details from across the passage show that the colony's survival matters more than the needs of an individual bee?",
+        "answer": "Workers change jobs as the hive needs them, foragers risk long flights to gather food, and workers expel drones when food is scarce.",
+        "rubric": "A strong response uses at least two examples from different parts of the passage and connects them to colony survival.",
+        "source_context": "Workers perform changing roles, foragers travel for food, and drones are expelled during scarcity."
+      },
+      {
+        "id": 10,
+        "sentence_index": 3,
+        "difficulty": "medium",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "During summer, how many eggs can a queen bee lay in one day?",
+        "options": ["12", "60,000", "500", "2,000"],
+        "answer": "2,000",
+        "source_context": "The queen can produce up to 2,000 eggs per day during summer."
+      }
+    ]
+  },
+  {
+    "id": "passage-2",
+    "questions": [
+      {
+        "id": 1,
+        "sentence_index": 18,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "main-idea",
+        "question": "How does Mara change over the course of the story?",
+        "answer": "Mara changes from an apprentice focused on tools and obvious faults into a careful observer who listens before acting.",
+        "rubric": "The response should describe both her early reliance on tasks or tools and her later understanding of patient observation.",
+        "source_context": "Mara begins with simple workshop tasks and ends trusted to inspect every new clock."
+      },
+      {
+        "id": 2,
+        "sentence_index": 5,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "Why was seventeen minutes past four important to the watch's owner?",
+        "options": ["It was closing time", "It was when her brother left for sea", "It was her birthday", "It was when she bought the watch"],
+        "answer": "It was when her brother left for sea",
+        "source_context": "The watch stopped at the exact time her brother had left for sea."
+      },
+      {
+        "id": 3,
+        "sentence_index": 3,
+        "difficulty": "easy",
+        "type": "short-answer",
+        "category": "detail",
+        "question": "What work was Mara allowed to do before the pocket watch arrived?",
+        "answer": "She polished brass cases, replaced leather straps, and sorted small screws.",
+        "rubric": "The response should identify at least two of Mara's simple workshop tasks.",
+        "source_context": "Mara could polish cases, replace straps, and sort screws."
+      },
+      {
+        "id": 4,
+        "sentence_index": 12,
+        "difficulty": "medium",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "What repair made the pocket watch work again?",
+        "options": ["Replacing the spring", "Installing a new face", "Cleaning and straightening a gear pin", "Changing the leather strap"],
+        "answer": "Cleaning and straightening a gear pin",
+        "source_context": "Mara cleaned the leaning gear, straightened its pin, and added oil."
+      },
+      {
+        "id": 5,
+        "sentence_index": 14,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "abstract",
+        "question": "What did Master Vale mean when he said good repair begins with attention rather than action?",
+        "answer": "He meant that a repairer should first observe and understand the problem instead of immediately reaching for tools.",
+        "rubric": "The response should contrast careful observation with rushing to take action.",
+        "source_context": "Master Vale explains the lesson after Mara solves the fault by listening closely."
+      },
+      {
+        "id": 6,
+        "sentence_index": 6,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "What did Master Vale ask Mara to do first?",
+        "options": ["Replace the spring", "Inspect the watch", "Question the owner", "Polish the case"],
+        "answer": "Inspect the watch",
+        "source_context": "Master Vale asked Mara to inspect the watch before he touched a tool."
+      },
+      {
+        "id": 7,
+        "sentence_index": 11,
+        "difficulty": "medium",
+        "type": "short-answer",
+        "category": "inference",
+        "question": "Which observation helped Mara locate the fault?",
+        "answer": "She noticed that one gear leaned slightly each time it turned.",
+        "rubric": "The response should identify the leaning gear or connect the repeated scrape with that gear.",
+        "source_context": "The scrape repeated, and Mara saw one gear lean as it turned."
+      },
+      {
+        "id": 8,
+        "sentence_index": 8,
+        "difficulty": "medium",
+        "type": "MCQ",
+        "category": "inference",
+        "question": "What did Mara do instead of immediately opening the watch?",
+        "options": ["She returned it", "She asked for a new spring", "She listened closely", "She polished the case"],
+        "answer": "She listened closely",
+        "source_context": "Mara placed the watch near her ear and listened."
+      },
+      {
+        "id": 9,
+        "sentence_index": 18,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "abstract",
+        "question": "How does the story show that patience can be a practical skill rather than simply waiting?",
+        "answer": "Mara's patient listening reveals a repeating scrape and leaning gear, giving her the evidence needed to make the correct repair.",
+        "rubric": "A strong response connects patience with gathering useful evidence and making a precise decision.",
+        "source_context": "Listening before acting allows Mara to identify and repair the real fault."
+      },
+      {
+        "id": 10,
+        "sentence_index": 17,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "cause-effect",
+        "question": "What changed after Mara repaired the watch?",
+        "options": ["She left the shop", "Master Vale let her open every new clock", "The shop received a sign", "She stopped using tools"],
+        "answer": "Master Vale let her open every new clock",
+        "source_context": "From then on, Master Vale trusted Mara with each new clock."
+      }
+    ]
+  },
+  {
+    "id": "passage-3",
+    "questions": [
+      {
+        "id": 1,
+        "sentence_index": 18,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "main-idea",
+        "question": "How did shared responsibility transform both the empty lot and the relationships on Willow Street?",
+        "answer": "Shared planning and daily care turned the lot into a productive garden while giving neighbors reasons to communicate, cooperate, and trust one another.",
+        "rubric": "The response should address both the physical change to the lot and the social change among residents.",
+        "source_context": "Residents build a garden together and begin sharing notes, recipes, produce, and responsibility."
+      },
+      {
+        "id": 2,
+        "sentence_index": 1,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "Why was the empty lot unsuitable for a park or sports field?",
+        "options": ["It was privately owned", "It was too small and shaded", "It flooded every day", "It was far from the apartments"],
+        "answer": "It was too small and shaded",
+        "source_context": "The lot was too small for a park and too shaded for a sports field."
+      },
+      {
+        "id": 3,
+        "sentence_index": 5,
+        "difficulty": "medium",
+        "type": "short-answer",
+        "category": "detail",
+        "question": "How did the residents prepare before planting?",
+        "answer": "They measured the sunlight, tested the soil, and asked households what they wanted to grow.",
+        "rubric": "The response should identify at least two planning activities completed before planting.",
+        "source_context": "The group studied the site and collected ideas from residents."
+      },
+      {
+        "id": 4,
+        "sentence_index": 7,
+        "difficulty": "medium",
+        "type": "MCQ",
+        "category": "inference",
+        "question": "Why did the children make signs for the garden beds?",
+        "options": ["To advertise vegetables", "To keep birds away", "To reinforce that the beds were shared", "To record the weather"],
+        "answer": "To reinforce that the beds were shared",
+        "source_context": "The signs prevented a family from quietly claiming a section as its own."
+      },
+      {
+        "id": 5,
+        "sentence_index": 11,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "cause-effect",
+        "question": "How did the group respond to the wilted seedlings, and why was that response important?",
+        "answer": "They created a watering calendar that assigned one household each day, replacing vague assumptions with clear responsibility.",
+        "rubric": "The response should identify the calendar and explain how it solved the shared-responsibility problem.",
+        "source_context": "Seedlings wilted because everyone assumed someone else had watered them."
+      },
+      {
+        "id": 6,
+        "sentence_index": 6,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "Which crop was placed in the sunniest corner?",
+        "options": ["Basil", "Leafy vegetables", "Tomatoes", "Mushrooms"],
+        "answer": "Tomatoes",
+        "source_context": "The group learned that the sunniest corner could support tomatoes."
+      },
+      {
+        "id": 7,
+        "sentence_index": 13,
+        "difficulty": "medium",
+        "type": "short-answer",
+        "category": "inference",
+        "question": "What did the notes about pests, weather, and spare produce reveal about the residents?",
+        "answer": "The notes showed that residents had begun communicating regularly and treating the garden as a shared responsibility.",
+        "rubric": "The response should connect the notes with growing cooperation or communication.",
+        "source_context": "Residents began leaving useful garden information for one another."
+      },
+      {
+        "id": 8,
+        "sentence_index": 9,
+        "difficulty": "easy",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "How is the first planting day described?",
+        "options": ["Quiet and efficient", "Busy, cheerful, and disorganized", "Cancelled by rain", "Managed only by children"],
+        "answer": "Busy, cheerful, and disorganized",
+        "source_context": "The first planting day was busy, cheerful, and badly organized."
+      },
+      {
+        "id": 9,
+        "sentence_index": 18,
+        "difficulty": "hard",
+        "type": "short-answer",
+        "category": "abstract",
+        "question": "Why does the narrator say the project succeeded even though not every plant survived?",
+        "answer": "Its deeper success was that residents learned to coordinate, solve problems, and share responsibility rather than merely producing perfect plants.",
+        "rubric": "A strong response distinguishes the garden's social success from simple plant survival.",
+        "source_context": "The final sentence defines success as learning to share responsibility."
+      },
+      {
+        "id": 10,
+        "sentence_index": 16,
+        "difficulty": "medium",
+        "type": "MCQ",
+        "category": "detail",
+        "question": "What did the residents do with the harvest?",
+        "options": ["Sold all of it", "Gave it all to one family", "Donated one basket and shared the rest", "Stored everything for winter"],
+        "answer": "Donated one basket and shared the rest",
+        "source_context": "The group donated one basket and shared the remaining produce at a meal."
+      }
+    ]
+  }
+]

@@ -1,10 +1,28 @@
-{ 
-    "passage": { 
-        "id": "passage-1", 
-        "title": "The Secret Life of Honeybees", 
-        "content":  "Inside every beehive, there is a world more organized than most human cities. A single hive can contain up to 60,000 bees, and every single one has a job to do. At the center of the hive is the queen bee. She is the only bee that lays eggs—up to 2,000 per day during summer. Despite her title, the queen doesn't actually make decisions for the hive. Her main job is simply to lay eggs and keep the colony growing. The worker bees are all female, and they do everything else. Young workers stay inside the hive, cleaning cells, feeding larvae, and building honeycomb from wax they produce from their own bodies. As they get older, they graduate to guarding the hive entrance. The oldest workers become foragers, flying up to five miles from the hive to collect nectar and pollen. Male bees are called drones. They don't collect food, don't guard the hive, and don't have stingers. Their only purpose is to mate with queens from other hives. In autumn, when food becomes scarce, the workers push the drones out of the hive to conserve resources. Bees communicate through dancing. When a forager finds a good source of flowers, she returns to the hive and performs a 'waggle dance' that tells other bees exactly where to find the food. The angle of her dance shows the direction relative to the sun, and the length of her waggle shows the distance. This tiny insect has been making honey the same way for over 100 million years. Every spoonful of honey represents the life's work of about twelve bees.",
-        "complete_rate": 0,
-        "date": "2026-01-28",
-        "readTime": "3 min read"
-    } 
+{
+  "passages": [
+    {
+      "id": "passage-1",
+      "title": "The Secret Life of Honeybees",
+      "content": "Inside every beehive, there is a world more organized than most human cities. A single hive can contain up to 60,000 bees, and every single one has a job to do. At the center of the hive is the queen bee. She is the only bee that lays eggs, producing up to 2,000 per day during summer. Despite her title, the queen does not actually make decisions for the hive. Her main job is simply to lay eggs and keep the colony growing. The worker bees are all female, and they do everything else. Young workers stay inside the hive, cleaning cells, feeding larvae, and building honeycomb from wax they produce from their own bodies. As they get older, they graduate to guarding the hive entrance. The oldest workers become foragers, flying up to five miles from the hive to collect nectar and pollen. Male bees are called drones. They do not collect food, guard the hive, or have stingers. Their only purpose is to mate with queens from other hives. In autumn, when food becomes scarce, the workers push the drones out of the hive to conserve resources. Bees communicate through dancing. When a forager finds a good source of flowers, she returns to the hive and performs a waggle dance that tells other bees where to find the food. The angle of her dance shows the direction relative to the sun, and the length of her waggle shows the distance. This tiny insect has been making honey the same way for over 100 million years. Every spoonful of honey represents the life's work of about twelve bees.",
+      "complete_rate": 0,
+      "date": "2026-01-28",
+      "readTime": "3 min read"
+    },
+    {
+      "id": "passage-2",
+      "title": "The Clockmaker's Apprentice",
+      "content": "On the narrowest street in Bellweather stood a clock shop with no sign above its door. The shop belonged to Master Vale, who repaired everything from kitchen timers to tower clocks. Mara had worked there for six months, but she was still trusted only with simple tasks. She could polish brass cases, replace leather straps, and sort tiny screws by size. One rainy morning, an old woman carried in a silver pocket watch wrapped in a blue handkerchief. The watch had stopped at seventeen minutes past four, the exact time her brother had left for sea many years earlier. Master Vale asked Mara to inspect it before he touched a single tool. Mara expected to find a broken spring or a cracked gear. Instead, she placed the watch near her ear and listened to the silence between the sounds of the rain. The first tick was faint, but it was followed by a scrape. The second tick arrived late, and the scrape came again. Mara noticed that one gear leaned slightly whenever it turned. She cleaned the gear, straightened its pin, and added a drop of oil. The clock started at once, filling the shop with a quick and steady rhythm. Master Vale explained that good repair work begins with attention rather than action. Mara realized that she had spent months learning to use tools but had only just learned how to listen. She wrote the lesson on a card and placed it above her workbench. From then on, Master Vale allowed her to open every new clock that entered the shop.",
+      "complete_rate": 0,
+      "date": "2026-02-02",
+      "readTime": "3 min read"
+    },
+    {
+      "id": "passage-3",
+      "title": "The Community Garden Experiment",
+      "content": "When apartment residents on Willow Street first discussed the empty lot, most people saw only weeds and broken bricks. The lot was too small for a park and too shaded for a sports field. A resident named Elena suggested turning it into a community garden. Some neighbors doubted that strangers with different schedules could care for one shared space. Elena proposed a six-week experiment before anyone made a permanent commitment. The group measured the sunlight, tested the soil, and asked each household what it wanted to grow. They learned that the sunniest corner could support tomatoes while the shaded edge was better for herbs and leafy vegetables. Children painted signs for each garden bed so that no family could quietly claim a section as its own. A retired carpenter named Bo built a low table where people could sort seeds and repair tools. The first planting day was busy, cheerful, and badly organized. A week later, several seedlings had wilted because everyone assumed someone else had watered them. Instead of replacing the plants immediately, the group created a simple calendar with one household responsible each day. By midsummer, beans climbed the fence, basil covered the shaded beds, and the tomatoes had begun to ripen. More importantly, residents started leaving notes for one another about pests, weather, and spare produce. Residents who had shared a hallway for years without speaking now stopped to compare recipes. The garden committee voted to keep the experiment running through autumn. At harvest, the group donated one basket of vegetables to a nearby kitchen and shared the rest at a courtyard meal. The project did not succeed because every plant survived; it succeeded because the residents learned how to share responsibility.",
+      "complete_rate": 0,
+      "date": "2026-02-05",
+      "readTime": "3 min read"
+    }
+  ]
 }

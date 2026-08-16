@@ -3,16 +3,20 @@ import passageData from "@/src/data/sample-passage.json";
 import questionsData from "@/src/data/sample-question.json";
 import { FullPassage, PassageBase, Question, PassageEntry } from "@/src/types/reading";
 
+interface PassageDataShape {
+  passage?: FullPassage;
+  passages?: FullPassage[];
+}
 
-// This is a plain function, NOT a hook. It works everywhere!
+const rawPassageData = passageData as PassageDataShape;
+const passages = rawPassageData.passages ?? (rawPassageData.passage ? [rawPassageData.passage] : []);
+
 export function getPassageById(id: string): FullPassage | null {
-  const p = passageData.passage;
-  return p.id === id ? (p as FullPassage) : null;
+  return passages.find(passage => passage.id === id) ?? null;
 }
 
 export function getAllPassages(): PassageBase[] {
-  const p = passageData.passage;
-  return [p as PassageBase];
+  return passages;
 }
 
 export function getQuestionsByPassageId(id: string): Question[] {
