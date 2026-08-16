@@ -2,8 +2,9 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FullPassage, Question } from '@/src/types/reading';
+import { FullPassage, Question, QuestionSource } from '@/src/types/reading';
 import { generateQuestions } from '@/src/lib/actions/generate';
+import { isStringArray, readStoredJson } from '@/src/lib/storage';
 
 // Sub-components
 import { SetupStage } from './SetupStage';
@@ -15,26 +16,57 @@ import { HighlightsPanel } from './HighlightsPanel';
 import { BookOpenCheck } from 'lucide-react';
 
 const SAVE_KEY = (id: string) => `reading-session-${id}`;
+const DEFAULT_NUM_CHUNKS = 6;
 
+interface SavedReadingSession {
+  questions: Question[];
+  questionSource?: QuestionSource;
+  numChunks: number;
+  currentIdx: number;
+  isSettled: boolean;
+  answers: Record<string, string>;
+}
 
+function isSavedReadingSession(value: unknown): value is SavedReadingSession {
+  if (!value || typeof value !== 'object') return false;
+  const session = value as Partial<SavedReadingSession>;
+  const validSource = session.questionSource === undefined ||
+    session.questionSource === 'predefined' ||
+    session.questionSource === 'ai' ||
+    session.questionSource === 'saved';
+  return (
+    Array.isArray(session.questions) &&
+    Number.isInteger(session.numChunks) &&
+    Number(session.numChunks) >= 1 &&
+    Number.isInteger(session.currentIdx) &&
+    Number(session.currentIdx) >= 0 &&
+    typeof session.isSettled === 'boolean' &&
+    validSource &&
+    !!session.answers &&
+    typeof session.answers === 'object' &&
+    !Array.isArray(session.answers) &&
+    Object.values(session.answers).every(answer => typeof answer === 'string')
+  );
+}
 
 export function ReadingView({ passage, initialQuestions }: { passage: FullPassage, initialQuestions: Question[] }) {
   // --- STATE ---
   const [questions, setQuestions] = useState<Question[]>(initialQuestions);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [numChunks, setNumChunks] = useState(2); 
+  const [numChunks, setNumChunks] = useState(DEFAULT_NUM_CHUNKS);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isSettled, setIsSettled] = useState(false);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const [questionSource, setQuestionSource] = useState<QuestionSource>('predefined');
   // Inside ReadingView
   const [highlights, setHighlights] = useState<string[]>([]);
   const [isHighlightMode, setIsHighlightMode] = useState(false);
 
   // 2. Load Highlights (Once on mount)
   useEffect(() => {
-    const saved = localStorage.getItem(`highlights-${passage.id}`);
-    if (saved) setHighlights(JSON.parse(saved));
+    const saved = readStoredJson(`highlights-${passage.id}`, isStringArray);
+    if (saved) setHighlights(saved);
   }, [passage.id]);
 
   // 3. Save Highlights (Whenever they change)
@@ -51,40 +83,34 @@ export function ReadingView({ passage, initialQuestions }: { passage: FullPassag
 
   // --- PERSISTENCE: LOAD ---
   useEffect(() => {
-    const saved = localStorage.getItem(SAVE_KEY(passage.id));
+    const saved = readStoredJson(SAVE_KEY(passage.id), isSavedReadingSession);
     if (saved) {
-      const data = JSON.parse(saved);
-      setQuestions(data.questions);
-      setNumChunks(data.numChunks);
-      setCurrentIdx(data.currentIdx);
-      setIsSettled(data.isSettled);
-      setAnswers(data.answers);
-    } else if (questions.length === 0) {
-      handleNewSession();
+      setQuestions(saved.questions.length > 0 ? saved.questions : initialQuestions);
+      setQuestionSource(saved.questionSource ?? 'saved');
+      setNumChunks(saved.numChunks);
+      setCurrentIdx(saved.currentIdx);
+      setIsSettled(saved.isSettled);
+      setAnswers(saved.answers);
+    } else if (initialQuestions.length === 0) {
+      void handleNewSession();
     }
     setIsLoaded(true);
   }, [passage.id]);
-
-  
-  // --- PERSISTENCE: SAVE ---
-  useEffect(() => {
-    if (isLoaded && (isSettled || Object.keys(answers).length > 0)) {
-      const sessionData = { questions, numChunks, currentIdx, isSettled, answers };
-      localStorage.setItem(SAVE_KEY(passage.id), JSON.stringify(sessionData));
-    }
-  }, [questions, numChunks, currentIdx, isSettled, answers, isLoaded, passage.id]);
 
   // Inside ReadingView.tsx
   const handleNewSession = async () => {
     setIsGenerating(true);
     try {
-      const res = await generateQuestions(passage.content);
-      const newQuestions = res as Question[];
+      const result = await generateQuestions(passage.content, initialQuestions);
+      const newQuestions = result.questions.length > 0 ? result.questions : initialQuestions;
       setQuestions(newQuestions);
-      return newQuestions; // Add this return
+      setQuestionSource(result.questions.length > 0 ? result.source : 'predefined');
+      return newQuestions;
     } catch (error) {
       console.error("Failed to generate:", error);
-      return [];
+      setQuestions(initialQuestions);
+      setQuestionSource('predefined');
+      return initialQuestions;
     } finally {
       setIsGenerating(false);
     }
@@ -99,15 +125,11 @@ export function ReadingView({ passage, initialQuestions }: { passage: FullPassag
     setAnswers({});
     setCurrentIdx(0);
     setIsSettled(false);
-    setQuestions([]); 
+    setNumChunks(DEFAULT_NUM_CHUNKS);
+    setQuestions([]);
 
-    // 3. Explicitly wait for the new questions
-    const freshQuestions = await handleNewSession();
-    
-    // 4. Force state update if it hasn't caught up
-    if (freshQuestions.length > 0) {
-      setQuestions(freshQuestions);
-    }
+    // 3. Generate a fresh set when AI is available, otherwise restore the predefined set.
+    await handleNewSession();
   };
 
   // --- LOGIC ---
@@ -205,7 +227,7 @@ export function ReadingView({ passage, initialQuestions }: { passage: FullPassag
     if (questions.length > 0 && (isSettled || Object.keys(answers).length > 0)) {
       
       // Save the full session data
-      const sessionData = { questions, numChunks, currentIdx, isSettled, answers };
+      const sessionData = { questions, questionSource, numChunks, currentIdx, isSettled, answers };
       localStorage.setItem(SAVE_KEY(passage.id), JSON.stringify(sessionData));
       
       // Save the percentage for the Home Page cards
@@ -216,6 +238,7 @@ export function ReadingView({ passage, initialQuestions }: { passage: FullPassag
     }
   }, [
     questions, 
+    questionSource,
     numChunks, 
     currentIdx, 
     isSettled, 
@@ -231,6 +254,12 @@ export function ReadingView({ passage, initialQuestions }: { passage: FullPassag
   const handleDeleteHighlight = (textToDelete: string) => {
     setHighlights(prev => prev.filter(text => text !== textToDelete));
   };
+
+  const questionSourceLabel = questionSource === 'ai'
+    ? 'AI-generated questions'
+    : questionSource === 'saved'
+      ? 'Saved questions'
+      : 'Predefined questions';
 
   if (!isLoaded) return null; // Prevent hydration mismatch
 
@@ -276,9 +305,14 @@ export function ReadingView({ passage, initialQuestions }: { passage: FullPassag
         <h1 className="font-serif text-sm md:text-lg text-slate-400 truncate uppercase tracking-widest">
           {passage.title}
         </h1>
-        <div className="mt-4 flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-emerald-600">
+        <div className="mt-4 flex justify-between items-center gap-3 text-[10px] font-black uppercase tracking-widest text-emerald-600">
           <span>{isFinishedState ? "Complete" : isSummaryState ? "Final Review" : !isSettled ? "Setup" : `Part ${currentIdx + 1}/${chunks.length}`}</span>
-          <span className="bg-emerald-50 px-2 py-0.5 rounded-full">{Math.round(completionRate)}%</span>
+          <div className="flex items-center justify-end gap-2">
+            <span className="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full tracking-normal">
+              {questionSourceLabel}
+            </span>
+            <span className="bg-emerald-50 px-2 py-0.5 rounded-full">{Math.round(completionRate)}%</span>
+          </div>
         </div>
         <div className="h-1.5 w-full bg-slate-200 rounded-full mt-2 overflow-hidden">
           <motion.div className="h-full bg-emerald-500" animate={{ width: `${completionRate}%` }} />

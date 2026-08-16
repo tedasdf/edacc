@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { PassageBase } from "@/src/types/reading";
 import { BookOpenCheck } from "lucide-react"; // Import Lucide
 import { HighlightsPanel } from "./HighlightsPanel"; // Import your panel
+import { isStringArray, readStoredJson } from "@/src/lib/storage";
 
 export function PassageCard({ passage }: { passage: PassageBase }) {
   const [displayRate, setDisplayRate] = useState(passage.complete_rate);
@@ -12,10 +13,11 @@ export function PassageCard({ passage }: { passage: PassageBase }) {
 
   useEffect(() => {
     const savedProgress = localStorage.getItem(`reading-progress-${passage.id}`);
-    const savedHighlights = localStorage.getItem(`highlights-${passage.id}`);
+    const savedHighlights = readStoredJson(`highlights-${passage.id}`, isStringArray);
     
-    if (savedProgress) setDisplayRate(Number(savedProgress));
-    if (savedHighlights) setHighlights(JSON.parse(savedHighlights));
+    const progress = Number(savedProgress);
+    if (Number.isFinite(progress)) setDisplayRate(Math.min(Math.max(progress, 0), 100));
+    if (savedHighlights) setHighlights(savedHighlights);
   }, [passage.id]);
 
   // Handle Deletion inside the Dashboard Card

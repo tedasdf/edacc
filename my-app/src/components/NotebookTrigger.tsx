@@ -1,16 +1,14 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { BookOpenCheck } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { isStringArray, readStoredJson } from '@/src/lib/storage';
 
 export function NotebookTrigger({ passageId, onClick }: { passageId: string, onClick: () => void }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const saved = localStorage.getItem(`highlights-${passageId}`);
-    if (saved) {
-      setCount(JSON.parse(saved).length);
-    }
+    const saved = readStoredJson(`highlights-${passageId}`, isStringArray);
+    setCount(saved?.length ?? 0);
   }, [passageId]);
 
   if (count === 0) return null;

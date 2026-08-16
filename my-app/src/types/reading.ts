@@ -11,9 +11,9 @@ export interface FullPassage extends PassageBase{
 }   
 
 export interface Question {
-  id: string;
+  id: string | number;
   type: 'MCQ' | 'TYPING' | 'TRUE_FALSE' | 'mcq' | 'typing' | 'true_false' | 'short-answer';
-  category: 'literal' | 'abstract';
+  category: 'literal' | 'detail' | 'inference' | 'abstract' | 'cause-effect' | 'main-idea';
   question: string;
   options?: string[];
   answer: string;
@@ -27,6 +27,13 @@ export interface Question {
 export interface PassageEntry {
   id: string;
   questions: Question[];
+}
+
+export type QuestionSource = 'predefined' | 'ai' | 'saved';
+
+export interface QuestionGenerationResult {
+  questions: Question[];
+  source: Exclude<QuestionSource, 'saved'>;
 }
 
 

@@ -1,8 +1,6 @@
 "use server";
-import { Question } from "@/src/types/reading";
+import { Question, QuestionGenerationResult } from "@/src/types/reading";
 import Groq from "groq-sdk";
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 function splitIntoSentences(text: string): string[] {
   return text.match(/[^.!?]+[.!?]+/g)?.map(s => s.trim()) || [text];
@@ -72,7 +70,14 @@ function validateSentenceIndices(
   }
 }
 
-export async function generateQuestions(passageText: string): Promise<Question[]> {
+export async function generateQuestions(
+  passageText: string,
+  fallbackQuestions: Question[] = []
+): Promise<QuestionGenerationResult> {
+  if (!process.env.GROQ_API_KEY) {
+    return { questions: fallbackQuestions, source: "predefined" };
+  }
+
   const sentences = splitIntoSentences(passageText);
   const sentenceCount = sentences.length;
   
@@ -154,10 +159,10 @@ export async function generateQuestions(passageText: string): Promise<Question[]
 
     5. Cognitive requirements:
     - At least 2 questions MUST assess "abstract" or "main-idea" understanding
+    - Generate exactly 2 questions with sentence_index = "global"
     - Questions with sentence_index = "global":
       - MUST be category "abstract" or "main-idea"
       - MUST synthesize information from multiple parts of the passage
-      - Maximum of 3 global questions total
 
     6. Quality rules:
     - Avoid yes/no questions
@@ -170,10 +175,11 @@ export async function generateQuestions(passageText: string): Promise<Question[]
     {
       "questions": [ ... ]
     }
-    `;
+  `;
 
-
-  const completion = await groq.chat.completions.create({
+  try {
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+    const completion = await groq.chat.completions.create({
     model: "llama-3.3-70b-versatile",
     messages: [
       { role: "system", content: systemPrompt },
@@ -201,6 +207,9 @@ export async function generateQuestions(passageText: string): Promise<Question[]
   // Validate indices (0 → sentenceCount)
   validateSentenceIndices(normalizedQuestions, sentenceCount);
 
-  return normalizedQuestions as Question[];
-
+    return { questions: normalizedQuestions as Question[], source: "ai" };
+  } catch (error) {
+    console.error("AI question generation failed; using predefined questions.", error);
+    return { questions: fallbackQuestions, source: "predefined" };
+  }
 }
