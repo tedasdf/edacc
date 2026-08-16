@@ -19,9 +19,18 @@ const checkAnswer = (user: string, correct: string) => {
   return normalize(user) === normalize(correct);
 };
 
+const isMultipleChoice = (question: Question) => question.type.toLowerCase() === 'mcq';
+
 export function ResultsStage({ questions, answers, onReset, passageContent }: ResultsStageProps) {
   const [showReview, setShowReview] = useState(false);
-  const score = questions.filter(q => answers[q.id.toString()] === q.rubric).length;
+  const multipleChoiceQuestions = questions.filter(isMultipleChoice);
+  const writtenQuestions = questions.filter(question => !isMultipleChoice(question));
+  const multipleChoiceScore = multipleChoiceQuestions.filter(question =>
+    checkAnswer(answers[question.id.toString()], question.answer)
+  ).length;
+  const completedWrittenAnswers = writtenQuestions.filter(question =>
+    Boolean(answers[question.id.toString()]?.trim())
+  ).length;
 
   return (
     <motion.div 
@@ -49,9 +58,16 @@ export function ResultsStage({ questions, answers, onReset, passageContent }: Re
           <div className="text-center">
             <div className="text-5xl mb-4">🏆</div>
             <h2 className="text-3xl font-bold text-slate-800 mb-2">Results</h2>
-            <p className="text-slate-500 mb-8 font-serif italic text-lg">
-              You scored {score} / {questions.length}
-            </p>
+            <div className="text-slate-500 mb-8 font-serif text-base space-y-2">
+              <p>
+                <span className="font-bold text-slate-800">{multipleChoiceScore} / {multipleChoiceQuestions.length}</span>{' '}
+                multiple-choice answers correct
+              </p>
+              <p>
+                <span className="font-bold text-slate-800">{completedWrittenAnswers} / {writtenQuestions.length}</span>{' '}
+                written responses completed
+              </p>
+            </div>
             
             <div className="flex flex-col gap-3">
               <button 
@@ -64,7 +80,7 @@ export function ResultsStage({ questions, answers, onReset, passageContent }: Re
                 onClick={onReset}
                 className="w-full py-4 bg-slate-100 text-slate-600 rounded-2xl font-bold hover:bg-slate-200 transition-colors"
               >
-                Try Again
+                Restart Session
               </button>
             </div>
           </div>
@@ -83,7 +99,11 @@ export function ResultsStage({ questions, answers, onReset, passageContent }: Re
 
             <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
               {questions.map((q, idx) => {
-                const isCorrect = answers[q.id.toString()] === q.rubric;
+                const userAnswer = answers[q.id.toString()] || "";
+                const isMcq = isMultipleChoice(q);
+                const isCorrect = isMcq
+                  ? checkAnswer(userAnswer, q.answer)
+                  : Boolean(userAnswer.trim());
                 return (
                   <div key={q.id} className={`p-5 rounded-[1.5rem] border ${isCorrect ? 'border-emerald-100 bg-emerald-50/20' : 'border-red-100 bg-red-50/20'}`}>
                     <div className="flex gap-3 mb-2">
@@ -95,13 +115,27 @@ export function ResultsStage({ questions, answers, onReset, passageContent }: Re
                     <div className="text-xs space-y-1 ml-8">
                       <p className={isCorrect ? "text-emerald-700" : "text-red-700"}>
                         <span className="font-black uppercase text-[9px] opacity-50 mr-2">Yours:</span> 
-                        {answers[q.id.toString()] || "No answer"}
+                        {userAnswer || "No answer"}
                       </p>
-                      {!isCorrect && (
+                      {isMcq && !isCorrect && (
                         <p className="text-emerald-700">
                           <span className="font-black uppercase text-[9px] opacity-50 mr-2">Correct:</span> 
-                          {q.rubric}
+                          {q.answer}
                         </p>
+                      )}
+                      {!isMcq && (
+                        <>
+                          <p className="text-emerald-700">
+                            <span className="font-black uppercase text-[9px] opacity-50 mr-2">Reference:</span>
+                            {q.answer}
+                          </p>
+                          {q.rubric && (
+                            <p className="text-slate-500">
+                              <span className="font-black uppercase text-[9px] opacity-50 mr-2">Check for:</span>
+                              {q.rubric}
+                            </p>
+                          )}
+                        </>
                       )}
                     </div>
                   </div>
